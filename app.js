@@ -1,28 +1,19 @@
 // include thư viện http
+import express from 'express';
+import homeRoute from './router/home';
+import productRoute from './router/products';
+import mongoose from 'mongoose';
 
-const http = require('http');
-const express = require('express');
+
 const app = express();
-const server = http.createServer(app);
 
-const homeRoute = require('./router/home')
+app.use(express.json());
 app.use(homeRoute);
+app.use(productRoute);
 
-app.get('/products',(request,response)=>{
-    response.send(`
-    <h1>Product</h1>
-    <p>Page</p>
-    `)
-})
-app.get('/products/:productID',(request,response)=>{
-    response.send(`
-    <h1>Detail</h1>
-    <p>Page</p>
-    ${request.params.productID}
-    `)
-})
+mongoose.connect('mongodb://127.0.0.1:27017/we16307');
+
 // khởi tạo server
-
 // const server = http.createServer((request,response)=>{
 //     console.log(request.url);
 //     if(request.url==="/"){
@@ -44,6 +35,6 @@ app.get('/products/:productID',(request,response)=>{
 // Lắng nghe cổng thực thi
 
 const port = 3001;
-server.listen(port, () =>{
+app.listen(port, () =>{
     console.log(`server is running on ${port}`);
 });
