@@ -25,9 +25,14 @@ export const listProduct = async  (request, response) => {
     }
     // response.json(products);
 }
-export const listProductDetail = (request, response) => {
-    // const product = products.find(item => item.id === +request.params.id);
-    // response.json(product);
+export const listProductDetail = async (request, response) => {
+    try {
+        const product = await Product.findOne({_id:request.params.id}).exec();
+        response.json(product);
+    } catch (error) {
+        response.status(400).json({message:"Khong the hiển thị"});
+    }
+   
 }
 export const deleteProduct = async (request, response) => {
     try {
