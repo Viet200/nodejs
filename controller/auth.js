@@ -1,5 +1,5 @@
 import User from "../models/user"
-
+import jwt from 'jsonwebtoken';
 export const signup = async (req, res) => {
 	try {
 		const { email, name, password } = req.body;
@@ -32,7 +32,9 @@ export const signin = async (request, response) => {
 			message: "Mật khẩu không đúng"
 		})
 	}
+	const token = jwt.sign({ _id: user._id }, "123456", { expiresIn: 3600 })
 	response.json({
+		token,
 		user: {
 			_id: user._id,
 			email: user.email,

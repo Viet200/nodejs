@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Viet200/nodejs#readme",
   "dependencies": {
     "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.8"
   },
   "devDependencies": {
