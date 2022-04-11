@@ -9,6 +9,7 @@ import authRouter from './router/auth';
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use(homeRoute);
 app.use(productRoute);
 app.use(categoryRoute);
